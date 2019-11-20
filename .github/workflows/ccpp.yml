@@ -9,15 +9,10 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: change pwd
-      run: cd c++/utils
-    - name: make build directory
-      run: mkdir build
-    - name: change directory
-      run: cd build
-    - name: cmake
-      run: cmake -DCMAKE_BUILD_TYPE=Release ..
-    - name: make
-      run: make
-    - name: run test
-      run: Release/test.out
+    - name: build and run test
+      run: |
+        cd c++/utils
+        mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
+        make
+        Release/test.out
